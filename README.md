@@ -53,3 +53,109 @@ export default tseslint.config({
 })
 ```
 # UltimateTeamRace
+
+# UltimateRace Frontend
+
+Application frontend React 19 avec Vite pour le projet UltimateRace.
+
+## Prérequis
+
+- Docker et Docker Compose installés sur votre machine
+- Node.js 22.14 (pour le développement local)
+- Git
+
+## Installation avec Docker
+
+1. **Cloner le repository**
+```bash
+git clone [URL_DU_REPOSITORY]
+cd ultimateRace-front
+```
+
+2. **Construire les images Docker**
+```bash
+docker compose build
+```
+
+## Utilisation
+
+### Environnement de Développement
+
+Pour lancer l'environnement de développement :
+```bash
+docker compose up dev
+```
+
+L'application sera disponible à l'adresse : [http://localhost:5173](http://localhost:5173)
+
+### Environnement de Production
+
+Pour lancer l'environnement de production :
+```bash
+docker compose up prod
+```
+
+L'application sera disponible à l'adresse : [http://localhost:80](http://localhost:80)
+
+## Commandes Utiles
+
+- **Arrêter les conteneurs** :
+```bash
+docker compose down
+```
+
+- **Voir les logs** :
+```bash
+docker compose logs -f [dev|prod]
+```
+
+- **Reconstruire les images** :
+```bash
+docker compose build
+```
+
+## Structure du Projet
+
+```
+ultimateRace-front/
+├── Dockerfile          # Configuration pour l'image de production
+├── Dockerfile.dev      # Configuration pour l'image de développement
+├── docker-compose.yml  # Configuration des services Docker
+├── nginx.conf         # Configuration du serveur Nginx
+└── ...                # Autres fichiers du projet
+```
+
+## Configuration Docker
+
+- **Développement** : Utilise Node.js 22.14 avec hot-reloading
+- **Production** : Utilise Nginx pour servir les fichiers statiques
+- **Ports** :
+  - Développement : 5173
+  - Production : 80
+
+## Dépannage
+
+Si vous rencontrez des problèmes :
+
+1. **Vérifier les logs** :
+```bash
+docker compose logs -f [dev|prod]
+```
+
+2. **Vérifier l'état des conteneurs** :
+```bash
+docker ps
+```
+
+3. **Nettoyer les conteneurs et images** :
+```bash
+docker compose down
+docker system prune -a
+```
+
+4. **Reconstruire depuis zéro** :
+```bash
+docker compose down
+docker compose build --no-cache
+docker compose up [dev|prod]
+```
